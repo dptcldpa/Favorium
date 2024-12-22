@@ -1,0 +1,22 @@
+spring:
+    application:
+        name: Favorium
+    thymeleaf:
+        cache: false
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/favorium
+        username: root
+        password: ${mysql.password}
+    mvc:
+        static-path-pattern: /static/**
+    config:
+        import: security-variable.yml
+    jpa:
+        hibernate:
+            ddl-auto: none
+            naming:
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+mybatis:
+    mapper-locations: mappers/*Mapper.xml
