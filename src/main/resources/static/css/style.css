@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#wrap {
+	width: 1200px;
+	height: 800px;
+	margin: 0 auto;
+}
+
+header {
+	width: 250px;
+	height: 800px;
+}
+
+section {
+	width: 700px;
+	height: 800px;
+}
+
+
+aside {
+	width: 250px;
+	height: 800px;
+}
