@@ -4,20 +4,72 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout/default}">
 
-			<section layout:fragment="contents" class="d-flex justify-content-center align-items-center">
-				<div class="input-box border border-1 p-5">
-					<p class="fs-3">로그인</p>
+		<section layout:fragment="contents" class="d-flex justify-content-center align-items-center">
+			<div class="input-box border border-1 p-5">
+				<p class="fs-3">로그인</p>
+				
+				<form id="loginForm">
+					<input type="text" class="form-control" id="idInput" placeholder="아이디">
+					<div class="small text-danger d-none" id="idError">아이디를 입력하세요</div>
 					
-					<input type="text" class="form-control" placeholder="아이디">
-					<input type="password" class="form-control mt-3" placeholder="비밀번호">
+					<input type="password" class="form-control mt-3" id="passwordInput" placeholder="비밀번호">
+					<div class="small text-danger d-none" id="passwordError">비밀번호를 입력하세요</div>
 					
 					<p class="fs-6 text-end mt-2"><a href=#>비밀번호를 잊으셨나요?</a></p>
 					
 					<div class="d-flex justify-content-center mt-5">
-						<button type="button" class="btn btn-secondary">로그인</button>
+						<button type="submit" class="btn btn-secondary">로그인</button>
 					</div>
-					
-					
-				</div>
-			</section>
+				</form>
+			</div>
+		</section>
+		
+		<script layout:fragment="script">
+		
+		$(document).ready(function() {
+			
+			// 로그인
+			$("#loginForm").on("submit", function (e) {
+				
+				e.preventDefault(); 
+
+				let isValid = true; 
+				
+				let id = $("#idInput").val();
+				let password = $("#passwordInput").val();
+				
+				if(!id) {
+					$("#idError").removeClass("d-none");
+					isValid = false; 
+					return;
+				} else {
+					$("#idError").addClass("d-none");
+				}
+				
+				if(!password) {
+					$("#passwordError").removeClass("d-none");
+					isValid = false; 
+				} else {
+					$("#passwordError").addClass("d-none");
+				}
+				
+				$.ajax({
+					type:"post"
+					, url:"/user/login" 
+					, data:{"loginId":id, "password":password}
+					, success:function(response) {
+						console.log(response);
+						if(response.result == "success") {
+							alert("로그인 성공!");
+						} else {
+							alert("로그인 실패!ㅠ");
+						}
+					}
+					, error:function() {
+						alert("로그인 에러!");
+					}
+				});
+			});
+		});
+		</script>
 </html>
