@@ -32,3 +32,21 @@ aside {
 	height: 800px;
 	background-color: #EEEEEE;
 }
+
+aside > .search {
+	width: 200px;
+	height:30px;
+	background-color: #CCCCCC;
+}
+
+aside > .categoty-keyword-list {
+	width: 200px;
+	height:200px;
+	background-color: #BBBBBB;
+}
+
+aside > .user-recommend-keyword {
+	width: 200px;
+	height:200px;
+	background-color: #AAAAAA;
+}
