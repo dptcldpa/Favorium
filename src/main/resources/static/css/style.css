@@ -9,6 +9,12 @@
 header {
 	width: 250px;
 	height: 800px;
+	background-color: #EEEEEE;
+}
+
+header > .logo {
+	width: 250px;
+	height: 100px;
 }
 
 section {
@@ -16,8 +22,13 @@ section {
 	height: 800px;
 }
 
+section > .input-box {
+	width: 430px;
+	height: 450px;
+}
 
 aside {
 	width: 250px;
 	height: 800px;
+	background-color: #EEEEEE;
 }
