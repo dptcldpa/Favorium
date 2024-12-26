@@ -12,6 +12,7 @@
 					<div>
 						<input type="text" class="form-control" id="idInput" placeholder="아이디">
 						<div class="small text-danger d-none" id="idBlank">아이디를 입력하세요.</div>
+						<div class="small text-danger d-none" id="idBlank">이미 사용중인 아이디입니다.</div>
 					</div>
 					
 					<div>
@@ -21,7 +22,8 @@
 					
 					<div>
 						<input type="password" class="form-control mt-3" id="passwordConfirmInput" placeholder="비밀번호 확인">
-						<div class="small text-danger d-none" id="passwordConfirmBlank">비밀번호가 일치하지 않습니다.</div>
+						<div class="small text-success d-none" id="matchPassword">비밀번호가 일치합니다.</div>
+						<div class="small text-danger d-none" id="mismatchPassword">비밀번호가 일치하지 않습니다.</div>
 					</div>
 					
 					<div>
@@ -51,7 +53,7 @@
 				
 				let id = $("#idInput").val();
 				
-				if(id == "") {
+				if(id === "") {
 					$("#idBlank").removeClass("d-none");
 				} else {
 					$("#idBlank").addClass("d-none");
@@ -62,8 +64,8 @@
 				
 				let password = $("#passwordInput").val();
 				
-				if(password == "") {
-					$("#passwordBlank").removeClass("d-none");
+				if(password === "") {
+					$("#passwordBlank").removeClass("d-none"); 
 				} else {
 					$("#passwordBlank").addClass("d-none");					
 				}
@@ -71,20 +73,29 @@
 			
 			$("#passwordConfirmInput").on("blur", function() {
 				
+				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				
-				if(passwordConfirm == "") {
-					$("#passwordConfirmBlank").removeClass("d-none");
+				if(passwordConfirm === "") {
+					$("#mismatchPassword").removeClass("d-none");
 				} else {
-					$("#passwordConfirmBlank").addClass("d-none");					
+					// 비밀번화 확인과 비밀번호와 일치한지 확인
+					if(password === passwordConfirm) {
+						$("#mismatchPassword").addClass("d-none");
+						$("#matchPassword").removeClass("d-none");
+					} else {
+						$("#mismatchPassword").removeClass("d-none");					
+						$("#matchPassword").addClass("d-none");					
+					}					
 				}
+				
 			});
 			
 			$("#emailInput").on("blur", function() {
 				
 				let email = $("#emailInput").val();
 				
-				if(email == "") {
+				if(email === "") {
 					$("#emailBlank").removeClass("d-none");
 				} else {
 					$("#emailBlank").addClass("d-none");					
@@ -95,7 +106,7 @@
 				
 				let nickname = $("#nicknameInput").val();
 				
-				if(nickname == "") {
+				if(nickname === "") {
 					$("#nicknameBlank").removeClass("d-none");
 				} else {
 					$("#nicknameBlank").addClass("d-none");					
@@ -107,45 +118,40 @@
 				
 				e.preventDefault();
 				
-				let isValid = true;
-				
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				let email = $("#emailInput").val();
 				let nickname = $("#nicknameInput").val();
 				
-				if(id == "") {
+				if(id === "") {
 					$("#idBlank").removeClass("d-none");
-					isValid = false;
 				} else {
+					alert("입력함!");
 					$("#idBlank").addClass("d-none");
 				}
 				
-				if(password == "") {
+				if(password === "") {
 					$("#passwordBlank").removeClass("d-none");
-					isValid = false;
 				} else {
 					$("#passwordBlank").addClass("d-none");					
 				}
 				
-				if(passwordConfirm == "") {
-					$("#passwordConfirmBlank").removeClass("d-none");
-					isValid = false;
+				if(passwordConfirm === "") {
+					$("#mismatchPassword").removeClass("d-none");
 				} else {
-					$("#passwordConfirmBlank").addClass("d-none");					
+					$("#mismatchPassword").addClass("d-none");					
 				}
 				
-				if(email == "") {
+				if(email === "") {
 					$("#emailBlank").removeClass("d-none");
-					isValid = false;
 				} else {
 					$("#emailBlank").addClass("d-none");					
 				}
 				
-				if(nickname == "") {
+				if(nickname === "") {
 					$("#nicknameBlank").removeClass("d-none");
-					isValid = false;
+					return;
 				} else {
 					$("#nicknameBlank").addClass("d-none");					
 				}
@@ -157,6 +163,7 @@
 					, success:function(response) {
 						if(response.result == "success") {
 							alert("회원가입 성공!");
+							/* location.href = "/user/login-view"; */
 						} else {
 							alert("회원가입 실패~");
 						}
@@ -166,6 +173,7 @@
 					}
 				});
 			});
+			
 		});
 		</script>
 </html>
