@@ -32,23 +32,19 @@
 			$("#loginForm").on("submit", function (e) {
 				
 				e.preventDefault(); 
-
-				let isValid = true; 
 				
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				
-				if(!id) {
+				if(id === "") {
 					$("#idError").removeClass("d-none");
-					isValid = false; 
-					return;
 				} else {
 					$("#idError").addClass("d-none");
 				}
 				
-				if(!password) {
-					$("#passwordError").removeClass("d-none");
-					isValid = false; 
+				if(password === "") {
+					$("#passwordError").removeClass("d-none"); 
+					return;
 				} else {
 					$("#passwordError").addClass("d-none");
 				}

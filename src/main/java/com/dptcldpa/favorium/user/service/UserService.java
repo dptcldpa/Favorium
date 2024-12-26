@@ -31,4 +31,16 @@ public class UserService {
 		
 	}
 	
+	// 로그인
+	public User getUser(String loginId, String password) {
+		
+		User user = userRepository.findByLoginId(loginId);
+		
+		if (user != null & user.getPassword().equals(password)) {
+			return user;
+		} else {
+			return null;
+		}
+	}
+	
 }

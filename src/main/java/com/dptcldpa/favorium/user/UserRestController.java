@@ -4,19 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dptcldpa.favorium.user.domain.User;
 import com.dptcldpa.favorium.user.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/user")
 @RestController
 public class UserRestController {
 	
 	@Autowired
-	private UserService userSerivce;
+	private UserService userService;
 	
 	// 회원가입
 	@PostMapping("/signup")
@@ -28,7 +32,7 @@ public class UserRestController {
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
-		if(userSerivce.addUser(loginId, password, email, nickname)) {
+		if(userService.addUser(loginId, password, email, nickname)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
@@ -39,11 +43,26 @@ public class UserRestController {
 	
 	// 로그인
 	@PostMapping("/login")
-	public String login(
+	public Map<String, String> login(
 			@RequestParam("loginId") String loginId
-			, @RequestParam("password") String password) {
+			, @RequestParam("password") String password
+			, HttpSession session
+			, Model model) {
 		
+		User user = userService.getUser(loginId, password);
 		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(user != null) {
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userLoginId", user.getLoginId());
+			
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
 		
 	}
 	

@@ -10,6 +10,6 @@ import com.dptcldpa.favorium.user.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	Optional<User> findByLoginId(String loginId);
+	User findByLoginId(String loginId);
 	
 }
