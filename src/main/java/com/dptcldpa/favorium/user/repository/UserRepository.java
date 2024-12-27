@@ -10,6 +10,9 @@ import com.dptcldpa.favorium.user.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
+	// 아이디 중복확인
+	boolean existsByLoginId(String loginId);
+	
 	User findByLoginId(String loginId);
 	
 }

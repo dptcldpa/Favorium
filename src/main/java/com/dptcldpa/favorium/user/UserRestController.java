@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +44,12 @@ public class UserRestController {
 		return resultMap;
 	}
 	
+	// 아이디 중복확인
+	@GetMapping("/duplicated-id")
+	public ResponseEntity<Boolean> isDuplicated(@PathVariable String loginId) {
+		return ResponseEntity.ok(userService.isDuplicated(loginId));
+	}
+		
 	// 로그인
 	@PostMapping("/login")
 	public Map<String, String> login(

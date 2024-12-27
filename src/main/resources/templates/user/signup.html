@@ -12,7 +12,7 @@
 					<div>
 						<input type="text" class="form-control" id="idInput" placeholder="아이디">
 						<div class="small text-danger d-none" id="idBlank">아이디를 입력하세요.</div>
-						<div class="small text-danger d-none" id="idBlank">이미 사용중인 아이디입니다.</div>
+						<div class="small text-danger d-none" id="useId">이미 사용중인 아이디입니다.</div>
 					</div>
 					
 					<div>
@@ -79,13 +79,13 @@
 				if(passwordConfirm === "") {
 					$("#mismatchPassword").removeClass("d-none");
 				} else {
-					// 비밀번화 확인과 비밀번호와 일치한지 확인
+					// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 일치한지 확인
 					if(password === passwordConfirm) {
 						$("#mismatchPassword").addClass("d-none");
 						$("#matchPassword").removeClass("d-none");
 					} else {
 						$("#mismatchPassword").removeClass("d-none");					
-						$("#matchPassword").addClass("d-none");					
+						$("#matchPassword").addClass("d-none");		
 					}					
 				}
 				
@@ -113,7 +113,7 @@
 				}
 			});
 			
-			// form 재출 시 유효성 검사
+			// form 제출 시 유효성 검사
 			$("#signupForm").on("submit", function (e) {
 				
 				e.preventDefault();
@@ -142,6 +142,14 @@
 				} else {
 					$("#mismatchPassword").addClass("d-none");					
 				}
+				
+				// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 다르면 회원가입 막기
+				/* if(password !== passwordConfirm) {
+					alert("불일치");
+					$("#mismatchPassword").removeClass("d-none");					
+					$("#matchPassword").addClass("d-none");
+					return;
+				} */
 				
 				if(email === "") {
 					$("#emailBlank").removeClass("d-none");
@@ -174,13 +182,11 @@
 				});
 			});
 			
+			// 아이디 중복확인
+			$("#idInput").on("blur", function() {
+				
+				
+			});
 		});
 		</script>
 </html>
-
-
-
-
-
-
-

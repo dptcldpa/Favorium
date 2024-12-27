@@ -31,6 +31,13 @@ public class UserService {
 		
 	}
 	
+	// 아이디 중복 확인
+	public boolean isDuplicated(String loginId) {
+		
+		return userRepository.existsByLoginId(loginId);
+		
+	}
+	
 	// 로그인
 	public User getUser(String loginId, String password) {
 		
