@@ -34,6 +34,21 @@ aside {
 	background-color: #EEEEEE;
 }
 
+aside > .profile {
+	width: 200px;
+	height:30px;
+	background-color: #AAAAAA;
+	font-size: 10px;
+}
+
+.profile > .profile-thumbnail {
+	width: 30px;
+	height: 30px;
+	overflow: hidden;
+	object-fit: cover;
+	border-radius: 100%;
+}
+
 aside > .search {
 	width: 200px;
 	height:30px;
