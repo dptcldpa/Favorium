@@ -127,7 +127,6 @@
 				if(id === "") {
 					$("#idBlank").removeClass("d-none");
 				} else {
-					alert("입력함!");
 					$("#idBlank").addClass("d-none");
 				}
 				
@@ -144,12 +143,11 @@
 				}
 				
 				// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 다르면 회원가입 막기
-				/* if(password !== passwordConfirm) {
-					alert("불일치");
+				if(password !== passwordConfirm) {
 					$("#mismatchPassword").removeClass("d-none");					
 					$("#matchPassword").addClass("d-none");
 					return;
-				} */
+				}
 				
 				if(email === "") {
 					$("#emailBlank").removeClass("d-none");
