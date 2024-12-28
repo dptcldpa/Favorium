@@ -66,3 +66,13 @@ aside > .user-recommend-keyword {
 	height:200px;
 	background-color: #AAAAAA;
 }
+
+#wrap > .home-screen {
+	width: 600px;
+	height: 800px;
+}
+
+#wrap > .home-screen > .home-btn {
+	width: 400px;
+	height: 50px;
+}
