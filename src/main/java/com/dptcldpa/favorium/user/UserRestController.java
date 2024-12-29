@@ -45,9 +45,12 @@ public class UserRestController {
 	}
 	
 	// 아이디 중복확인
-	@GetMapping("/duplicated-id")
+	@GetMapping("/duplicated-id/{loginId}")
 	public ResponseEntity<Boolean> isDuplicated(@PathVariable String loginId) {
-		return ResponseEntity.ok(userService.isDuplicated(loginId));
+		
+		boolean isDuplicated = userService.isDuplicated(loginId);
+		
+		return ResponseEntity.ok(isDuplicated);
 	}
 		
 	// 로그인
