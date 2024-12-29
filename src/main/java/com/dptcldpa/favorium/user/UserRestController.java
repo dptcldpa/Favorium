@@ -22,8 +22,11 @@ import jakarta.servlet.http.HttpSession;
 @RestController
 public class UserRestController {
 	
-	@Autowired
 	private UserService userService;
+	
+	public UserRestController(UserService userService) {
+		this.userService = userService;
+	}
 	
 	// 회원가입
 	@PostMapping("/signup")
@@ -46,7 +49,7 @@ public class UserRestController {
 	
 	// 아이디 중복확인
 	@GetMapping("/duplicated-id/{loginId}")
-	public ResponseEntity<Boolean> isDuplicated(@PathVariable String loginId) {
+	public ResponseEntity<Boolean> isDuplicated(@PathVariable("loginId") String loginId) {
 		
 		boolean isDuplicated = userService.isDuplicated(loginId);
 		

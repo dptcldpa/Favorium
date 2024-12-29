@@ -189,7 +189,7 @@
 				if(loginId) {
 					$.ajax({
 						type:"get"
-						, url:"/user/duplicated-id/${loginId}"
+						, url:"/user/duplicated-id/" + loginId
 						, success: function(response) {
 							if(response) {
 								alert("아이디 중복!");
