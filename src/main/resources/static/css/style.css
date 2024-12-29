@@ -36,14 +36,13 @@ aside {
 
 aside > .profile {
 	width: 200px;
-	height:30px;
-	background-color: #AAAAAA;
+	height:50px;
 	font-size: 10px;
 }
 
 .profile > .profile-thumbnail {
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	overflow: hidden;
 	object-fit: cover;
 	border-radius: 100%;
@@ -75,4 +74,17 @@ aside > .user-recommend-keyword {
 #wrap > .home-screen > .home-btn {
 	width: 400px;
 	height: 50px;
+}
+
+.dropdown-toggle::after {
+	display: none;
+}
+
+.dropdown-toggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.dropdown-toggle:hover {
+  background-color: #FFFFFF;
 }
