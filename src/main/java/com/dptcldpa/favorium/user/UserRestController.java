@@ -49,11 +49,13 @@ public class UserRestController {
 	
 	// 아이디 중복확인
 	@GetMapping("/duplicated-id/{loginId}")
-	public ResponseEntity<Boolean> isDuplicated(@PathVariable("loginId") String loginId) {
+	public Map<String, Boolean> isDuplicated(@PathVariable("loginId") String loginId) {
 		
-		boolean isDuplicated = userService.isDuplicated(loginId);
+		Map<String, Boolean> resultMap = new HashMap<>();
 		
-		return ResponseEntity.ok(isDuplicated);
+		resultMap.put("isDuplicated", userService.isDuplicated(loginId));
+		
+		return resultMap;
 	}
 		
 	// 로그인

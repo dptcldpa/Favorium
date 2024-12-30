@@ -114,7 +114,7 @@
 				}
 			});
 			
-			// form 제출 시 유효성 검사
+			// 회원가입 form 제출 시 유효성 검사
 			$("#signupForm").on("submit", function (e) {
 				
 				e.preventDefault();
@@ -124,6 +124,8 @@
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				let email = $("#emailInput").val();
 				let nickname = $("#nicknameInput").val();
+				
+				let isDuplicateCheck = false;
 				
 				if(id === "") {
 					$("#idBlank").removeClass("d-none");
@@ -163,6 +165,10 @@
 					$("#nicknameBlank").addClass("d-none");					
 				}
 				
+				if(!isDuplicateCheck) {
+					return;
+				}
+				
 				$.ajax({
 					type:"post"
 					, url:"/user/signup"
@@ -189,7 +195,7 @@
 				if(loginId) {
 					$.ajax({
 						type:"get"
-						, url:"/user/duplicated-id/" + loginId
+						, url:`/user/duplicated-id/${loginId}`
 						, success: function(response) {
 							if(response) {
 								alert("아이디 중복!");
