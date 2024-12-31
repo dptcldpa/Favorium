@@ -1,21 +1,39 @@
-	<header>
-		<div class="logo">
-			<div>로고</div>
-		</div>
-		
-		<ul class="nav flex-column">
-			<li class="nav-item"><a href="#">카테고리1</a></li>
-			<li class="nav-item"><a href="#">카테고리2</a></li>
-		</ul>
-		
-		<button type="button" class="btn btn-secondary" id="categoryAddBtn">+</button>
-	</header>
-	
-	<script layout:fragment="script">
-	
-	$(document).ready(function() {
-		$("#categoryAddBtn").addEventListener('click', function() {
+<html lang="ko" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+		<header th:fragment="header">
+			<div class="logo">
+				<div>로고</div>
+			</div>
 			
-		});
-	});
-	</script>
+			<ul class="nav flex-column">
+				<li class="nav-item"><a href="#">카테고리1</a></li>
+				<li class="nav-item"><a href="#">카테고리2</a></li>
+			</ul>
+			
+			<input type="text" id="cateogoryInput">
+			<button type="button" class="btn btn-secondary" id="categoryAddBtn">+</button>
+			<div class="to-dos" id="toDoList"> </div>
+		</header>
+		
+		<script th:block th:fragment="script">
+			
+			let cateogoryInput = document.getElementById("cateogoryInput");
+			let categoryAddBtn = document.getElementById("categoryAddBtn");
+			let toDoList = document.getElementById('toDoList');
+			
+			categoryAddBtn.addEventListener("click", function() {
+				
+				var list = document.createElement('li');
+				
+				if (!cateogoryInput.value) {
+			        alert('제목을 입력해 주세요!');
+				} else {
+			        list.innerText = cateogoryInput.value;  
+			        toDoList.appendChild(list);       
+			        cateogoryInput.value= "";               
+			    }
+			});
+		</script>
+</html>
