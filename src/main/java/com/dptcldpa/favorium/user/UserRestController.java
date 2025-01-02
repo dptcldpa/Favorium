@@ -53,7 +53,9 @@ public class UserRestController {
 		
 		Map<String, Boolean> resultMap = new HashMap<>();
 		
-		resultMap.put("isDuplicated", userService.isDuplicated(loginId));
+		boolean isDuplicate = userService.isDuplicated(loginId);
+		
+		resultMap.put("isDuplicated", isDuplicate);
 		
 		return resultMap;
 	}

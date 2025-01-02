@@ -49,6 +49,8 @@
 		// 회원가입
 		$(document).ready(function() {
 			
+			var isDuplicatedIdCheck = false;
+			
 			// 유효성 검사 시 blur 이벤트 적용
 			$("#idInput").on("blur", function() {
 				
@@ -114,18 +116,51 @@
 				}
 			});
 			
+			// 아이디 중복확인
+			$("#idInput").on("blur", function() {
+				
+				const loginId = $(this).val(); 
+				
+                if(loginId) { 
+					$.ajax({
+						type:"get"
+						, url:"/user/duplicated-id/" + loginId 
+						, success: function(response) {
+							if(response.isDuplicated) {
+								alert("아이디 중복!");
+								$("#unavailableId").removeClass("d-none");
+								$("#availableId").addClass("d-none");
+								isDuplicatedIdCheck = false; 
+							} else {
+								alert("아이디 중복 안됨!!");
+								$("#unavailableId").addClass("d-none");
+								$("#availableId").removeClass("d-none");
+								isDuplicatedIdCheck = true; 
+							}
+						}
+						, error:function() {
+							alert("아이디 중복 확인 에러!");
+						}
+					});
+                }
+			});
+			
 			// 회원가입 form 제출 시 유효성 검사
 			$("#signupForm").on("submit", function (e) {
 				
 				e.preventDefault();
+				
+				// 아이디 중복인 경우 회원가입 처리하지 않음
+				if(!isDuplicatedIdCheck) {
+					alert("아이디가 중복됩니다.");
+	            	return;
+				}
 				
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				let email = $("#emailInput").val();
 				let nickname = $("#nicknameInput").val();
-				
-				let isDuplicateCheck = false;
 				
 				if(id === "") {
 					$("#idBlank").removeClass("d-none");
@@ -165,10 +200,6 @@
 					$("#nicknameBlank").addClass("d-none");					
 				}
 				
-				if(!isDuplicateCheck) {
-					return;
-				}
-				
 				$.ajax({
 					type:"post"
 					, url:"/user/signup"
@@ -185,34 +216,6 @@
 						alert("회원가입 에러!");
 					}
 				});
-			});
-			
-			// 아이디 중복확인
-			$("#idInput").on("blur", function() {
-				
-				const loginId = $(this).val();
-				
-				if(loginId) {
-					$.ajax({
-						type:"get"
-						, url:`/user/duplicated-id/${loginId}`
-						, success: function(response) {
-							if(response) {
-								alert("아이디 중복!");
-								$("#unavailableId").removeClass("d-none");
-								$("#availableId").addClass("d-none");
-							} else {
-								alert("아이디 중복 안됨!!");
-								$("#unavailableId").addClass("d-none");
-								$("#availableId").removeClass("d-none");
-							}
-						}
-						, error:function() {
-							alert("아이디 중복 확인 에러!");
-						}
-					});
-				}
-				
 			});
 		});
 		</script>
