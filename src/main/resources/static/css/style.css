@@ -56,14 +56,18 @@ aside > .search {
 
 aside > .categoty-keyword-list {
 	width: 200px;
-	height:200px;
-	background-color: #BBBBBB;
 }
 
 aside > .user-recommend-keyword {
 	width: 200px;
-	height:200px;
-	background-color: #AAAAAA;
+}
+
+.recommend-keyword > .keyword {
+	background-color: silver;
+	word-break: keep-all;
+	overflow-wrap: break-word;
+	padding : 2px 9px;
+	border-radius: 20px;
 }
 
 #wrap > .home-screen {
