@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 #wrap {
-	width: 1200px;
-	height: 800px;
+	width: 100%;
+  	max-width: 1200px;
 	margin: 0 auto;
 }
 
@@ -75,9 +75,22 @@ aside > .user-recommend-keyword {
 	height: 800px;
 }
 
-#wrap > .home-screen > .home-btn {
-	width: 400px;
+.home-screen > .home-logo {
+	width: 250px;
+	height: 170px;
+}
+
+#wrap > .home-screen > .home-btn1 {
+	width: 350px;
 	height: 50px;
+	background-color: #2D3047;
+	color: white;
+}
+
+#wrap > .home-screen > .home-btn2 {
+	width: 350px;
+	height: 50px;
+	background-color: #93B7BE;
 }
 
 .dropdown-toggle::after {
