@@ -2,7 +2,7 @@
 <html lang="ko" 
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/default}">
+    layout:decorate="~{layout/only-content}">
 
 		<section layout:fragment="contents" class="d-flex justify-content-center align-items-center">
 			<div class="input-box border border-1 p-5">
@@ -15,10 +15,15 @@
 					<input type="password" class="form-control mt-3" id="passwordInput" placeholder="비밀번호">
 					<div class="small text-danger d-none" id="passwordError">비밀번호를 입력하세요</div>
 					
-					<p class="fs-6 text-end mt-2"><a href=#>비밀번호를 잊으셨나요?</a></p>
+					<p class="fs-6 text-end mt-2" ><a href="#" style="text-decoration: none;">비밀번호를 잊으셨나요?</a></p>
 					
-					<div class="d-flex justify-content-center mt-5">
-						<button type="submit" class="btn btn-secondary">로그인</button>
+					<div class="d-flex justify-content-center mt-4">
+						<button type="submit" class="btn w-100" style="background-color: #2D3047; color: white;">로그인</button>
+					</div>
+					
+					<div class="mt-4 d-flex justify-content-center">
+						<div class="me-2">계정이 없으신가요? </div>
+						<a href="/user/signup-view" style="text-decoration: none;">회원가입</a>
 					</div>
 				</form>
 			</div>
@@ -36,13 +41,13 @@
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				
-				if(id === "") {
+				if(id == "") {
 					$("#idError").removeClass("d-none");
 				} else {
 					$("#idError").addClass("d-none");
 				}
 				
-				if(password === "") {
+				if(password == "") {
 					$("#passwordError").removeClass("d-none"); 
 					return;
 				} else {
@@ -56,13 +61,13 @@
 					, success:function(response) {
 						console.log(response);
 						if(response.result == "success") {
-							alert("로그인 성공!");
+							location.href = "/user/mypage-view";
 						} else {
-							alert("로그인 실패!ㅠ");
+							alert("로그인 실패!");
 						}
 					}
 					, error:function() {
-						alert("로그인 에러!");
+						alert("로그인 에러");
 					}
 				});
 			});

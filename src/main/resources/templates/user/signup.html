@@ -2,7 +2,7 @@
 <html lang="ko" 
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/default}">
+    layout:decorate="~{layout/only-content}">
 
 		<section layout:fragment="contents" class="d-flex justify-content-center align-items-center">
 			<div class="input-box border border-1 p-5">
@@ -38,7 +38,12 @@
 					</div>
 					
 					<div class="d-flex justify-content-center mt-4">
-						<button type="submit" class="btn btn-secondary">회원가입</button>
+						<button type="submit" class="btn w-100" style="background-color: #93B7BE;">회원가입</button>
+					</div>
+					
+					<div class="mt-4 d-flex justify-content-center">
+						<div class="me-2">이미 계정이 있으신가요?</div>
+						<a href="/user/login-view" style="text-decoration: none;">로그인</a>
 					</div>
 				</form>
 			</div>
@@ -56,7 +61,7 @@
 				
 				let id = $("#idInput").val();
 				
-				if(id === "") {
+				if(id == "") {
 					$("#idBlank").removeClass("d-none");
 				} else {
 					$("#idBlank").addClass("d-none");
@@ -67,7 +72,7 @@
 				
 				let password = $("#passwordInput").val();
 				
-				if(password === "") {
+				if(password == "") {
 					$("#passwordBlank").removeClass("d-none"); 
 				} else {
 					$("#passwordBlank").addClass("d-none");					
@@ -79,11 +84,11 @@
 				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				
-				if(passwordConfirm === "") {
+				if(passwordConfirm == "") {
 					$("#mismatchPassword").removeClass("d-none");
 				} else {
 					// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 일치한지 확인
-					if(password === passwordConfirm) {
+					if(password == passwordConfirm) {
 						$("#mismatchPassword").addClass("d-none");
 						$("#matchPassword").removeClass("d-none");
 					} else {
@@ -98,7 +103,7 @@
 				
 				let email = $("#emailInput").val();
 				
-				if(email === "") {
+				if(email == "") {
 					$("#emailBlank").removeClass("d-none");
 				} else {
 					$("#emailBlank").addClass("d-none");					
@@ -109,7 +114,7 @@
 				
 				let nickname = $("#nicknameInput").val();
 				
-				if(nickname === "") {
+				if(nickname == "") {
 					$("#nicknameBlank").removeClass("d-none");
 				} else {
 					$("#nicknameBlank").addClass("d-none");					
@@ -127,12 +132,10 @@
 						, url:"/user/duplicated-id/" + loginId 
 						, success: function(response) {
 							if(response.isDuplicated) {
-								alert("아이디 중복!");
 								$("#unavailableId").removeClass("d-none");
 								$("#availableId").addClass("d-none");
 								isDuplicatedIdCheck = false; 
 							} else {
-								alert("아이디 중복 안됨!!");
 								$("#unavailableId").addClass("d-none");
 								$("#availableId").removeClass("d-none");
 								isDuplicatedIdCheck = true; 
@@ -150,54 +153,53 @@
 				
 				e.preventDefault();
 				
-				// 아이디 중복인 경우 회원가입 처리하지 않음
-				if(!isDuplicatedIdCheck) {
-					alert("아이디가 중복됩니다.");
-	            	return;
-				}
-				
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				let email = $("#emailInput").val();
 				let nickname = $("#nicknameInput").val();
 				
-				if(id === "") {
+				if(id == "") {
 					$("#idBlank").removeClass("d-none");
 				} else {
 					$("#idBlank").addClass("d-none");
 				}
 				
-				if(password === "") {
+				if(password == "") {
 					$("#passwordBlank").removeClass("d-none");
 				} else {
 					$("#passwordBlank").addClass("d-none");					
 				}
 				
-				if(passwordConfirm === "") {
+				if(passwordConfirm == "") {
 					$("#mismatchPassword").removeClass("d-none");
 				} else {
 					$("#mismatchPassword").addClass("d-none");					
 				}
 				
 				// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 다르면 회원가입 막기
-				if(password !== passwordConfirm) {
+				if(password != passwordConfirm) {
 					$("#mismatchPassword").removeClass("d-none");					
 					$("#matchPassword").addClass("d-none");
 					return;
 				}
 				
-				if(email === "") {
+				if(email == "") {
 					$("#emailBlank").removeClass("d-none");
 				} else {
 					$("#emailBlank").addClass("d-none");					
 				}
 				
-				if(nickname === "") {
+				if(nickname == "") {
 					$("#nicknameBlank").removeClass("d-none");
 					return;
 				} else {
 					$("#nicknameBlank").addClass("d-none");					
+				}
+				
+				// 아이디 중복인 경우 회원가입 처리하지 않음
+				if(!isDuplicatedIdCheck) {
+	            	return;
 				}
 				
 				$.ajax({
@@ -206,14 +208,13 @@
 					, data:{"loginId":id, "password":password, "email":email, "nickname":nickname}
 					, success:function(response) {
 						if(response.result == "success") {
-							alert("회원가입 성공!");
-							/* location.href = "/user/login-view"; */
+							location.href = "/user/login-view";
 						} else {
-							alert("회원가입 실패~");
+							alert("회원가입 실패!");
 						}
 					}
 					, error:function() {
-						alert("회원가입 에러!");
+						alert("회원가입 에러");
 					}
 				});
 			});
