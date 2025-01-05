@@ -1,10 +1,10 @@
 	<aside class="d-flex align-items-center flex-column">
 		
 		<div class="profile d-flex mt-3">
-			<img class="profile-thumbnail me-2" src="https://media.istockphoto.com/id/1967994177/ko/%EC%82%AC%EC%A7%84/cute-corgi-dog-in-a-wildflower-cage-sits-on-a-summer-sunny-meadow.jpg?s=1024x1024&w=is&k=20&c=z_Ovm07iBS4_TMa0THM7ZnvG_uujYGK4FBeTtKYuI54=">
+			<img class="profile-thumbnail me-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
 			
-			<div class="flex-column me-auto d-flex justify-content-center">
-				<div>LOGIN.ID</div>
+			<div th:if="${session.userId != null}" class="flex-column me-auto d-flex justify-content-center">
+				<div th:text="${session.userLoginId}">LOGIN.ID</div>
 				
 				<div>INTRODUCE</div>
 			</div>
