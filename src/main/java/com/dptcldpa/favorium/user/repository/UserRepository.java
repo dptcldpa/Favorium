@@ -1,7 +1,5 @@
 package com.dptcldpa.favorium.user.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +11,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	// 아이디 중복확인
 	boolean existsByLoginId(String loginId);
 	
+	// 로그인
 	User findByLoginId(String loginId);
 	
 }

@@ -62,6 +62,8 @@
 				let id = $("#idInput").val();
 				
 				if(id == "") {
+					$("#unavailableId").addClass("d-none");
+					$("#availableId").addClass("d-none");
 					$("#idBlank").removeClass("d-none");
 				} else {
 					$("#idBlank").addClass("d-none");
@@ -75,7 +77,7 @@
 				if(password == "") {
 					$("#passwordBlank").removeClass("d-none"); 
 				} else {
-					$("#passwordBlank").addClass("d-none");					
+					$("#passwordBlank").addClass("d-none");		
 				}
 			});
 			
@@ -85,6 +87,7 @@
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				
 				if(passwordConfirm == "") {
+					$("#matchPassword").addClass("d-none");		
 					$("#mismatchPassword").removeClass("d-none");
 				} else {
 					// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 일치한지 확인
@@ -129,7 +132,7 @@
                 if(loginId) { 
 					$.ajax({
 						type:"get"
-						, url:"/user/duplicated-id/" + loginId 
+						, url:`/user/duplicated-id/${loginId}` 
 						, success: function(response) {
 							if(response.isDuplicated) {
 								$("#unavailableId").removeClass("d-none");
@@ -177,13 +180,6 @@
 					$("#mismatchPassword").addClass("d-none");					
 				}
 				
-				// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 다르면 회원가입 막기
-				if(password != passwordConfirm) {
-					$("#mismatchPassword").removeClass("d-none");					
-					$("#matchPassword").addClass("d-none");
-					return;
-				}
-				
 				if(email == "") {
 					$("#emailBlank").removeClass("d-none");
 				} else {
@@ -195,6 +191,11 @@
 					return;
 				} else {
 					$("#nicknameBlank").addClass("d-none");					
+				}
+				
+				// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 다르면 회원가입 막기
+				if(password != passwordConfirm) {
+					return;
 				}
 				
 				// 아이디 중복인 경우 회원가입 처리하지 않음
