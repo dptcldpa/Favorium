@@ -30,6 +30,33 @@ section > .input-box {
 	position: relative;
 }
 
+section > .profile-box {
+	width: 600px;
+	height: 700px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.profile-box > .main-profile {
+	width: 600px;
+	height: 200px;
+}
+
+.profile-box > .nav {
+	width: 600px;
+	height: 50px;
+}
+
+.nav-link {
+	border-bottom: 2px solid black;
+	color: green;
+}
+
+.profile-box > .user-post {
+	width: 600px;
+	height: 450px;
+}
+
 aside {
 	width: 250px;
 	height: 800px;
@@ -106,4 +133,8 @@ aside > .user-recommend-keyword {
 
 .dropdown-toggle:hover {
   background-color: #FFFFFF;
+}
+
+.modal-header, .modal-footer {
+    border: none;
 }

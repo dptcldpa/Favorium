@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/default}">
+
+		<section layout:fragment="contents" class="d-flex justify-content-center align-items-center">
+			<div class="profile-box border border-1">
+				<div class="main-profile">
+					<img class="mx-3 rounded-circle" width="130px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+						
+					<div th:if="${session.userId != null}" class="flex-column me-auto d-flex justify-content-center">
+						<div>닉네임</div>
+						
+						<div>아이디(이메일)</div>
+						
+						<div>INTRODUCE</div>
+					</div>
+				</div>
+				
+				<ul class="nav nav-fill">
+					<li class="nav-item"><a href="#" class="nav-link nav-link-active">카테고리</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">카테고리</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">카테고리</a></li>
+				</ul>
+				
+				<div class="user-post bg-info"></div>
+			</div>
+		</section>
+</html>
