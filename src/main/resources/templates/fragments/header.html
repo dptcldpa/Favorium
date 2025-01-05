@@ -7,10 +7,9 @@
 				<div>로고</div>
 			</div>
 			
-			<ul class="nav flex-column">
-				<li class="nav-item"><a href="#">카테고리1</a></li>
-				<li class="nav-item"><a href="#">카테고리2</a></li>
-			</ul>
+			<div class="categotry flex-column">
+				<div class="categotry-list" id="categoryList"><a href="#">카테고리1</a></div>
+			</div>
 			
 			<!-- 추가 버튼 -->
 			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">+</button>
@@ -26,20 +25,45 @@
 				     	
 				      	<div class="modal-body">
 				       		<div>카테고리</div>
-				       		<input type="text" class="w-100 border-0 border-bottom">
+				       		<input type="text" class="w-100 border-0 border-bottom" id="categoryTitleInput">
 				      	</div>
 				      
 				      	<div class="modal-footer">
 				        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-				        	<button type="button" class="btn btn-primary">확인</button>
+				        	<button type="button" class="btn btn-primary" id="categorySaveBtn">확인</button>
 				      	</div>
 				    </div>
 				</div>
 			</div>
-			
 		</header>
 		
 		<script th:block th:fragment="script">
+		
+		$(document).ready(function() {
+			
+			$("#categorySaveBtn").on("click", function() {
+				
+				let categoryList = $("#categoryList").val();
+				let categoryAddBtn = $("#categoryAddBtn").val();
+				let categoryTitleInput = $("#categoryTitleInput").val();
+				
+				if(categoryTitleInput == "") {
+					alert("카테고리 제목을 작성하세요");
+					return;
+				}
+			
+				$.ajax({
+					type:"post"
+					, url:"/category/create"
+					, data:{"name":name}
+					, success:function(response) {
+						
+					}
+				});
+			});
+			
+			
+		});
 		
 		</script>
 </html>
