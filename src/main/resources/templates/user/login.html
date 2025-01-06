@@ -59,7 +59,6 @@
 					, url:"/user/login" 
 					, data:{"loginId":id, "password":password}
 					, success:function(response) {
-						console.log(response);
 						if(response.result == "success") {
 							location.href = "/user/mypage-view";
 						} else {

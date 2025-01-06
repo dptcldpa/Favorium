@@ -73,11 +73,21 @@
 			$("#passwordInput").on("blur", function() {
 				
 				let password = $("#passwordInput").val();
+				let passwordConfirm = $("#passwordConfirmInput").val();
 				
 				if(password == "") {
 					$("#passwordBlank").removeClass("d-none"); 
 				} else {
 					$("#passwordBlank").addClass("d-none");		
+					// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 일치한지 확인
+					if(password == passwordConfirm) {
+						$("#mismatchPassword").addClass("d-none");
+						$("#matchPassword").removeClass("d-none");
+					} else {
+						$("#mismatchPassword").removeClass("d-none");					
+						$("#matchPassword").addClass("d-none");		
+					}
+					
 				}
 			});
 			
@@ -105,11 +115,17 @@
 			$("#emailInput").on("blur", function() {
 				
 				let email = $("#emailInput").val();
+				let validEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 				
 				if(email == "") {
 					$("#emailBlank").removeClass("d-none");
 				} else {
-					$("#emailBlank").addClass("d-none");					
+					// 이메일 형식에 맞는지 확인
+					if(validEmail.test(email)) {
+						$("#emailBlank").addClass("d-none");				
+					} else {
+						$("#emailBlank").removeClass("d-none");
+					}
 				}
 			});
 			
@@ -195,6 +211,7 @@
 				
 				// 비밀번호에 입력한 값과 비밀번호 확인에 입력한 값이 다르면 회원가입 막기
 				if(password != passwordConfirm) {
+					$("#mismatchPassword").removeClass("d-none");
 					return;
 				}
 				
