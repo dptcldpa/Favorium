@@ -7,9 +7,10 @@
 				<div>로고</div>
 			</div>
 			
-			<div class="categotry flex-column">
-				<div class="categotry-list" id="categoryList"><a href="#">카테고리1</a></div>
-			</div>
+			<!-- 카테고리 목록 -->
+			<ul class="categotry flex-column" id="categotyList">
+				<li class="categotry-list"><a href="#">카테고리1</a></li>
+			</ul>
 			
 			<!-- 추가 버튼 -->
 			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">+</button>
@@ -43,20 +44,36 @@
 			
 			$("#categorySaveBtn").on("click", function() {
 				
-				let categoryList = $("#categoryList").val();
-				let categoryAddBtn = $("#categoryAddBtn").val();
-				let categoryTitleInput = $("#categoryTitleInput").val();
+				let categoryList = $("#categoryList");
+				let categoryTitle = $("#categoryTitleInput").val();
 				
-				if(categoryTitleInput == "") {
+				if(categoryTitle == "") {
 					alert("카테고리 제목을 작성하세요");
 					return;
 				}
-			
+				
+				// 모달 열기
+	            $('#categoryAddBtn').on('click', function() {
+	                $('#categoryTitle').val('');
+	            });
+				
+				
+				let addNewCategory = document.createElement('li');
+				addNewCategory.classList.add('categotry-list');
+		    	addNewCategory.innerText = categoryTitle; 
+				
+				document.getElementById('categotyList').appendChild(addNewCategory);
+				
+				$('#categoryAddModal').modal('hide');
+				
 				$.ajax({
 					type:"post"
 					, url:"/category/create"
-					, data:{"name":name}
+					, data:{"categoryName":categoryTitle}
 					, success:function(response) {
+					
+					}
+					, error:function() {
 						
 					}
 				});
