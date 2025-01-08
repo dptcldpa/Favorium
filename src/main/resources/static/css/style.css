@@ -60,7 +60,13 @@ section > .profile-box {
 aside {
 	width: 250px;
 	height: 800px;
-	background-color: #EEEEEE;
+	/* background-color: #EEEEEE; */
+	border-left: 0.5px solid #EEEEEE;
+}
+
+aside > .change {
+	width: 200px;
+	/* height: 200px; */
 }
 
 aside > .profile {
@@ -69,15 +75,15 @@ aside > .profile {
 	font-size: 10px;
 }
 
-.profile > .profile-thumbnail {
-	width: 50px;
-	height: 50px;
+.profile-thumbnail {
+	width: 25px;
+	height: 25px;
 	overflow: hidden;
 	object-fit: cover;
 	border-radius: 100%;
 }
 
-aside > .search {
+.search {
 	width: 200px;
 	height:30px;
 	background-color: #CCCCCC;
