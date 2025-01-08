@@ -9,7 +9,8 @@
 header {
 	width: 250px;
 	height: 800px;
-	background-color: #EEEEEE;
+	/* background-color: #EEEEEE; */
+	border: 0.5px solid #EEEEEE;
 }
 
 header > .logo {
@@ -61,7 +62,7 @@ aside {
 	width: 250px;
 	height: 800px;
 	/* background-color: #EEEEEE; */
-	border-left: 0.5px solid #EEEEEE;
+	border: 0.5px solid #EEEEEE;
 }
 
 aside > .change {
@@ -69,10 +70,17 @@ aside > .change {
 	/* height: 200px; */
 }
 
-aside > .profile {
-	width: 200px;
-	height:50px;
+.search {
+	width: 150px;
+	height:30px;
+	background-color: #f2f2f2;
+}
+
+ .profile {
+	width: 50px;
+	height: 30px;
 	font-size: 10px;
+	margin-top: 9px;
 }
 
 .profile-thumbnail {
@@ -83,18 +91,14 @@ aside > .profile {
 	border-radius: 100%;
 }
 
-.search {
-	width: 200px;
-	height:30px;
-	background-color: #CCCCCC;
-}
-
 aside > .categoty-keyword-list {
 	width: 200px;
+	border-radius: 8px;
 }
 
 aside > .user-recommend-keyword {
 	width: 200px;
+	border-radius: 8px;
 }
 
 .recommend-keyword > .keyword {
@@ -103,6 +107,8 @@ aside > .user-recommend-keyword {
 	overflow-wrap: break-word;
 	padding : 2px 9px;
 	border-radius: 20px;
+	display: inline-block;
+	margin-bottom: 5px;
 }
 
 #wrap > .home-screen {
