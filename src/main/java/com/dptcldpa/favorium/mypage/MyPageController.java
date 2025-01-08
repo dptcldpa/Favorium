@@ -9,7 +9,7 @@ public class MyPageController {
 	@GetMapping("/user/mypage-view")
 	public String mypage() {
 		
-		return "user/mypage";
+		return "mypage/mypage";
 		
 	}
 	
