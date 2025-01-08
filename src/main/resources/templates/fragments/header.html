@@ -12,23 +12,35 @@
 				<li class="categotry-list"><a href="#">카테고리1</a></li>
 			</ul>
 			
-			<!-- 추가 버튼 -->
-			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">+</button>
+			<!-- 카테고리 추가 버튼 -->
+			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">카테고리 +</button>
+			
+			<!-- 글 추가 버튼 -->
+			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#postAddModal" onclick="openPostModal()">글 +</button>
 			
 			<!-- 모달 -->
+			<!-- modal -->
 			<div class="modal fade" id="categoryAddModal" tabindex="-1" aria-labelledby="categoryAddLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
 				    <div class="modal-content">
+				    	<!-- 분리한거 들어오는 부분 -->
+				    
+				    	<!-- 여기서부터 분리하는 곳 -->
+				    	<!-- modal header -->
 				    	<div class="modal-header">
 				        	<h5 class="modal-title" id="categoryAddLabel">카테고리 추가</h5>
 				        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				     	</div>
 				     	
+				     	<!-- modal body -->
 				      	<div class="modal-body">
+				      	
+				      		<!-- modal 내용 -->
 				       		<div>카테고리</div>
 				       		<input type="text" class="w-100 border-0 border-bottom" id="categoryTitleInput">
 				      	</div>
 				      
+				      	<!-- modal footer -->
 				      	<div class="modal-footer">
 				        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 				        	<button type="button" class="btn btn-primary" id="categorySaveBtn">확인</button>
@@ -41,6 +53,11 @@
 		<script th:block th:fragment="script">
 		
 		$(document).ready(function() {
+			
+			function openPostModal() {
+				$('#postAddModal .modal-content').load("/post/create");
+				$('#postAddModal').modal();
+			}
 			
 			$("#categorySaveBtn").on("click", function() {
 				
