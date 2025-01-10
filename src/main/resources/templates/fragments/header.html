@@ -8,7 +8,7 @@
 			</div>
 			
 			<!-- 카테고리 목록 -->
-			<ul class="categotry flex-column" id="categotyList">
+			<ul class="categotry flex-column" id="categoryList">
 				<li class="categotry-list"><a href="#">카테고리1</a></li>
 			</ul>
 			
@@ -62,7 +62,6 @@
 			
 			$("#categorySaveBtn").on("click", function() {
 				
-				let categoryList = $("#categoryList");
 				let categoryTitle = $("#categoryTitleInput").val();
 				
 				if(categoryTitle == "") {
@@ -70,29 +69,28 @@
 					return;
 				}
 				
-				let addNewCategory = document.createElement('li');
-				addNewCategory.classList.add('categotry-list');
-		    	addNewCategory.innerText = categoryTitle; 
-				
-				document.getElementById('categotyList').appendChild(addNewCategory);
+				$('#categoryAddBtn').on('click', function() {
+	                $('#categoryTitleInput').val('');
+	            });
 				
 				$('#categoryAddModal').modal('hide');
 				
 				$.ajax({
 					type:"post"
 					, url:"/category/create"
-					, data:{"categoryName":categoryTitle}
+					, data:{"name":categoryTitle}
 					, success:function(response) {
-					
+						if(response.result == "success") {
+							alert("카테고리 생성 성공");
+						} else {
+							alert("카테고리 생성 실패");
+						}
 					}
 					, error:function() {
-						
+						alert("카테고리 생성 에러");
 					}
 				});
 			});
-			
-			
 		});
-		
 		</script>
 </html>
