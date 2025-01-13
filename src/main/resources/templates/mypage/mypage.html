@@ -8,19 +8,19 @@
 			<div class="profile-box border border-1">
 				<div class="d-flex justify-content-between">
 					<div class="main-profile mx-3 my-4">
-						<img class="mb-1 rounded-circle" width="130px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+						<img class="mb-3 rounded-circle" width="130px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
 							
 						<div th:if="${session.userId != null}" class="flex-column me-auto d-flex justify-content-center">
-							<div th:text="${session.userLoginId}">닉네임</div>
+							<div th:text="${session.userNickname}">닉네임</div>
 							
-							<div>아이디(이메일)</div>
+							<div th:text="${session.userLoginId}">아이디</div>
 							
 							<div>INTRODUCE</div>
 						</div>
 					</div>
 					
 					<div>
-						<button type="button" class="btn" id="profileEditBtn" data-bs-toggle="modal" data-bs-target="#profileEditModal">프로필 수정</button>
+						<button type="button" class="btn border border-2 rounded-pill mt-2 me-2" id="profileEditBtn" data-bs-toggle="modal" data-bs-target="#profileEditModal" style="width: 120px;">프로필 수정</button>
 						
 						<div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditLabel" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered modal-sm">
@@ -41,19 +41,19 @@
 					</div>
 				</div>
 				
-				<ul class="nav nav-fill">
-					<li class="nav-item"><a href="#" class="nav-link nav-link-active">카테고리</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">카테고리</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">카테고리</a></li>
+				<ul class="nav nav-fill mt-2">
+					<li class="nav-item"><a href="#" class="nav-link nav-link-active">전체</a></li>
+					<li class="nav-item" th:each="category : ${categoryList}"><a href="#" class="nav-link" th:text="${category.name}"></a></li>
 				</ul>
 				
-				<div class="user-post">
-					<div>
+				<div class="calendar">
+					<div class="text-center mt-3">
 					    <button id="prevMonth" class="btn">←</button>
 				        <h5 id="currentMonth" class="d-inline">2025.1</h5>
 				        <button id="nextMonth" class="btn">→</button>
 					</div>
-					<table id="calendar" class="table table-bordered">
+					
+					<table class="table table-bordered">
 		                <thead>
 		                    <tr>
 		                        <th>일</th>
@@ -74,6 +74,58 @@
 		</section>
 		
 		<script layout:fragment="script">
-		
+			
+		$(document).ready(function() {
+			
+			let calendarDates = $('#calendarDates');
+			let currentMonth = $('#currentMonth');
+	        let currentDate = new Date();
+	        
+	        function printMonth(year, month) {
+	        	
+	            calendarDates.empty();
+
+	            const firstDay = new Date(year, month, 1);
+	            const lastDay = new Date(year, month + 1, 0);
+	            const monthName = firstDay.getMonth() + 1;
+	            currentMonth.text(`${year}. ${monthName}`);
+				
+	            let dayOfWeek = firstDay.getDay();
+				
+	            let row = $('<tr></tr>');
+	            for (let i = 0; i < dayOfWeek; i++) {
+	                row.append('<td></td>');
+	            }
+				
+	            for (let date = 1; date <= lastDay.getDate(); date++) {
+	                if (dayOfWeek === 7) {
+	                    calendarDates.append(row);
+	                    row = $('<tr></tr>');
+	                    dayOfWeek = 0;
+	                }
+	                row.append(`<td class="date-box">${date}</td>`);
+	                dayOfWeek++;
+	            }
+				
+	            if (row.children().length > 0) {
+	                while (row.children().length < 7) {
+	                    row.append('<td></td>');
+	                }
+	                calendarDates.append(row);
+	            }
+	        }
+			
+	        printMonth(currentDate.getFullYear(), currentDate.getMonth());
+			
+	        $('#prevMonth').click(function() {
+	            currentDate.setMonth(currentDate.getMonth() - 1);
+	            printMonth(currentDate.getFullYear(), currentDate.getMonth());
+	        });
+			
+	        $('#nextMonth').click(function() {
+	            currentDate.setMonth(currentDate.getMonth() + 1);
+	            printMonth(currentDate.getFullYear(), currentDate.getMonth());
+	        });
+	    });
 		</script>
 </html>
