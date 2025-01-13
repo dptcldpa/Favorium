@@ -1,9 +1,51 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Line/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Line/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 #wrap {
 	width: 100%;
   	max-width: 1200px;
 	margin: 0 auto;
+	font-family: 'LINESeedKR-Rg';
+	
+}
+
+#wrap > .home-screen {
+	width: 600px;
+	height: 800px;
+}
+
+.home-screen > .home-logo {
+	width: 250px;
+	height: 170px;
+}
+
+#wrap > .home-screen > .signup-btn {
+	width: 350px;
+	height: 50px;
+	background-color: #2D3047;
+	color: white;
+	border-radius: 15px;
+}
+
+#wrap > .home-screen > .login-btn {
+	width: 350px;
+	height: 50px;
+	border-color: #2D3047;
+	border-radius: 15px;
+	border-width: 1.5px;
 }
 
 header {
@@ -29,6 +71,11 @@ section > .input-box {
 	width: 430px;
 	margin: 0 auto;
 	position: relative;
+	border-radius: 8px;
+}
+
+.input-text {
+	border-radius: 8px;
 }
 
 section > .profile-box {
@@ -109,29 +156,6 @@ aside > .user-recommend-keyword {
 	border-radius: 20px;
 	display: inline-block;
 	margin-bottom: 5px;
-}
-
-#wrap > .home-screen {
-	width: 600px;
-	height: 800px;
-}
-
-.home-screen > .home-logo {
-	width: 250px;
-	height: 170px;
-}
-
-#wrap > .home-screen > .home-btn1 {
-	width: 350px;
-	height: 50px;
-	background-color: #2D3047;
-	color: white;
-}
-
-#wrap > .home-screen > .home-btn2 {
-	width: 350px;
-	height: 50px;
-	background-color: #93B7BE;
 }
 
 .dropdown-toggle::after {

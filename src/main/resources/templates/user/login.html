@@ -6,24 +6,24 @@
 
 		<section layout:fragment="contents" class="d-flex justify-content-center align-items-center">
 			<div class="input-box border border-1 p-5">
-				<p class="fs-3">로그인</p>
+				<p class="fs-3" style="font-family: 'LINESeedKR-Bd';">로그인</p>
 				
 				<form id="loginForm">
-					<input type="text" class="form-control" id="idInput" placeholder="아이디">
+					<input type="text" class="form-control input-text" id="idInput" placeholder="아이디">
 					<div class="small text-danger d-none" id="idError">아이디를 입력하세요</div>
 					
-					<input type="password" class="form-control mt-3" id="passwordInput" placeholder="비밀번호">
+					<input type="password" class="form-control input-text mt-3" id="passwordInput" placeholder="비밀번호">
 					<div class="small text-danger d-none" id="passwordError">비밀번호를 입력하세요</div>
 					
-					<p class="fs-6 text-end mt-2" ><a href="#" style="text-decoration: none;">비밀번호를 잊으셨나요?</a></p>
+					<p class="fs-6 text-end mt-2" ><a href="#" style="text-decoration: none; color: #607483;">비밀번호를 잊으셨나요?</a></p>
 					
 					<div class="d-flex justify-content-center mt-4">
-						<button type="submit" class="btn w-100" style="background-color: #2D3047; color: white;">로그인</button>
+						<button type="submit" class="btn w-100" style="background-color: #93B7BE; border-radius: 10px;">로그인</button>
 					</div>
 					
 					<div class="mt-4 d-flex justify-content-center">
 						<div class="me-2">계정이 없으신가요? </div>
-						<a href="/user/signup-view" style="text-decoration: none;">회원가입</a>
+						<a href="/user/signup-view" style="text-decoration: none; color: #607483;">회원가입</a>
 					</div>
 				</form>
 			</div>
