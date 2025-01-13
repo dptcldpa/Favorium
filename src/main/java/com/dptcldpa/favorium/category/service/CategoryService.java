@@ -46,7 +46,6 @@ public class CategoryService {
 		
 		for(Category category:categoryList) {
 			
-			
 			CategoryDTO categoryDTO = CategoryDTO.builder()
 					.categoryId(category.getId())
 					.userId(category.getUserId())
@@ -59,4 +58,5 @@ public class CategoryService {
 		return categoryDTOList;
 		
 	}
+	
 }

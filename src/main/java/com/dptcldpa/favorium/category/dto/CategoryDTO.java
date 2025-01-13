@@ -10,7 +10,6 @@ public class CategoryDTO {
 	private int categoryId;
 	private int userId;
 	
-	private String loginId;
 	private String name;
 
 }
