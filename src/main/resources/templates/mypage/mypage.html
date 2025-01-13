@@ -7,8 +7,8 @@
 		<section layout:fragment="contents" class="d-flex justify-content-center">
 			<div class="profile-box border border-1">
 				<div class="d-flex justify-content-between">
-					<div class="main-profile">
-						<img class="mx-3 rounded-circle" width="130px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+					<div class="main-profile mx-3 my-4">
+						<img class="mb-1 rounded-circle" width="130px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
 							
 						<div th:if="${session.userId != null}" class="flex-column me-auto d-flex justify-content-center">
 							<div th:text="${session.userLoginId}">닉네임</div>
@@ -20,19 +20,18 @@
 					</div>
 					
 					<div>
-						<div>프로필 수정</div>
 						<button type="button" class="btn" id="profileEditBtn" data-bs-toggle="modal" data-bs-target="#profileEditModal">프로필 수정</button>
 						
 						<div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditLabel" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-dialog modal-dialog-centered modal-sm">
 							    <div class="modal-content">
 							    	<div class="modal-header">
 							        	<h5 class="modal-title" id="profileEditLabel">설정</h5>
 							        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							     	</div>
 							     	
-							      	<div class="modal-body">
-							       		<div class="border-bottom">프로필 변경</div>
+							      	<div class="modal-body text-center">
+							       		<div class="border-bottom">프로필 수정</div>
 							       		<div class="border-bottom">비밀번호 변경</div>
 							       		<div>로그아웃</div>
 							      	</div>
