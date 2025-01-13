@@ -1,49 +1,57 @@
-	<aside class="d-flex align-items-center flex-column">
-		<div class="change d-flex justify-content-center">
-			<div class="search rounded-pill d-flex align-items-center mt-3">
-				<i class="fi fi-br-search ms-3 mt-1"></i>
-				<input type="text" class="w-100 border-0 bg-transparent ms-2" placeholder="검색">
-			</div>
-			
-			<!-- 프로필 이미지 -->
-			<div class="profile">
-				<div class="dropdown">
-					<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-						<img class="profile-thumbnail" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+<html lang="ko" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+		<aside th:fragment="aside" class="d-flex align-items-center flex-column">
+			<div class="change d-flex justify-content-center">
+				<div class="search rounded-pill d-flex align-items-center mt-3">
+					<i class="fi fi-br-search ms-3 mt-1"></i>
+					<input type="text" class="w-100 border-0 bg-transparent ms-2" placeholder="검색">
+				</div>
+				
+				<!-- 프로필 이미지 -->
+				<div class="profile">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+							<img class="profile-thumbnail" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+							
+						</button>
 						
-					</button>
-					
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				    	<a class="dropdown-item" href="/user/logout">로그아웃</a>
-				  	</div>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    	<a class="dropdown-item" href="/user/logout">로그아웃</a>
+					  	</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		
-		<div class="categoty-keyword-list mt-3 py-2 px-3 border">
-			<p>인기 검색어</p>
 			
-			<div> 01 다이어리</div>
-			<div> 02 한강</div>
-			<div> 03 필사</div>
-			<div> 04 달력</div>
-			<div> 05 박구용</div>
-			<div> 06 탁상달력</div>
-			<div> 07 토익</div>
-			<div> 08 북커버</div>
-			<div> 09 일력</div>
-			<div> 10 AI</div>
-		</div>
-		
-		<div class="user-recommend-keyword mt-3 pt-2 pb-3 px-3 border">
-			<p>추천 키워드</p>
-			
-			<div class="recommend-keyword">
-				<span class="keyword">다이어리</span>
-				<span class="keyword">한강</span>
-				<span class="keyword">달력</span>
-				<span class="keyword">토익</span>
-				<span class="keyword">해리포터</span>
+			<div class="categoty-keyword-list mt-3 py-2 px-3 border">
+				<p>인기 검색어</p>
+				
+				<div> 01 다이어리</div>
+				<div> 02 한강</div>
+				<div> 03 필사</div>
+				<div> 04 달력</div>
+				<div> 05 박구용</div>
+				<div> 06 탁상달력</div>
+				<div> 07 토익</div>
+				<div> 08 북커버</div>
+				<div> 09 일력</div>
+				<div> 10 AI</div>
 			</div>
-		</div>
-	</aside>
+			
+			<div class="user-recommend-keyword mt-3 pt-2 pb-3 px-3 border">
+				<p>추천 키워드</p>
+				
+				<div class="recommend-keyword">
+					<span class="keyword">다이어리</span>
+					<span class="keyword">한강</span>
+					<span class="keyword">달력</span>
+					<span class="keyword">토익</span>
+					<span class="keyword">해리포터</span>
+				</div>
+			</div>
+		</aside>
+		
+		<script th:block th:fragment="script">
+		</script>
+</html>
