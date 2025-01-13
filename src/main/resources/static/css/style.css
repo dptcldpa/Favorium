@@ -33,12 +33,12 @@ section > .input-box {
 
 section > .profile-box {
 	width: 600px;
-	height: 700px;
+	height: 800px;
 	margin: 0 auto;
 	position: relative;
 }
 
-.profile-box > .main-profile {
+.main-profile {
 	width: 600px;
 	height: 200px;
 }
