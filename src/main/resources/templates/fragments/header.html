@@ -9,7 +9,7 @@
 			
 			<!-- 카테고리 목록 -->
 			<ul class="categotry flex-column" id="categoryList">
-				<li class="categotry-list" th:each="category : ${categoryList}"><a href="#" th:text="${category.name}"></a></li>
+				<li class="categotry-list" th:each="category : ${categoryList}" th:text="${category.name}"></li>
 			</ul>
 			
 			<!-- 카테고리 추가 버튼 -->
