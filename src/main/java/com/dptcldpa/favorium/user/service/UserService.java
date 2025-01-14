@@ -1,6 +1,7 @@
 package com.dptcldpa.favorium.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dptcldpa.favorium.user.domain.User;
@@ -9,15 +10,22 @@ import com.dptcldpa.favorium.user.repository.UserRepository;
 @Service
 public class UserService {
 	
-	@Autowired
 	private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
+    
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 	
 	// 회원가입
 	public boolean addUser(String loginId, String password, String email, String nickname) {
 		
+		String encodedPassword = passwordEncoder.encode(password);
+		
 		User user = User.builder()
 				.loginId(loginId)
-				.password(password)
+				.password(encodedPassword)
 				.email(email)
 				.nickname(nickname)
 				.build();
@@ -43,7 +51,7 @@ public class UserService {
 		
 		User user = userRepository.findByLoginId(loginId);
 		
-		if (user != null & user.getPassword().equals(password)) {
+		if (user != null && passwordEncoder.matches(password, user.getPassword())) {
 			return user;
 		} else {
 			return null;
