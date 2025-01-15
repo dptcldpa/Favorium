@@ -19,7 +19,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    private static final String[] anonymousUserUrl = {"/", "/user/signup", "/user/login"};
+    private static final String[] anonymousUserUrl = {"/", "/user/signup-view", "/user/login-view"};
 
     private static final String[] authenticatedUserUrl = {"/post/**", "/category/**"};
     
@@ -30,17 +30,17 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeRequests()
                 .requestMatchers(anonymousUserUrl).anonymous()
-                .requestMatchers(authenticatedUserUrl).authenticated()
+                .requestMatchers(authenticatedUserUrl).permitAll()
                 .anyRequest().permitAll()
                 .and()
                 .exceptionHandling()
                 .and()
                 .formLogin()
-                .loginPage("/user/signup-view")
+                .loginPage("/user/login-view")
                 .usernameParameter("loginId")
                 .passwordParameter("password")  
                 .failureUrl("/user/signup-view") 
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/user/mypage-view")
                 .and()
                 .logout()
                 .logoutUrl("/user/logout") 
