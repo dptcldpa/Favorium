@@ -78,7 +78,7 @@ section > .input-box {
 	border-radius: 8px;
 }
 
-section > .profile-box {
+section > .mypage-box {
 	width: 600px;
 	height: 800px;
 	margin: 0 auto;
@@ -90,7 +90,7 @@ section > .profile-box {
 	height: 200px;
 }
 
-.profile-box > .nav {
+.mypage-box > .nav {
 	width: 600px;
 	height: 50px;
 }
@@ -100,7 +100,7 @@ section > .profile-box {
 	color: green;
 }
 
-.profile-box > .user-post {
+.mypage-box > .user-post {
 	width: 600px;
 	height: 450px;
 }

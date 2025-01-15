@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/default}">
+
+		<section layout:fragment="contents" class="d-flex justify-content-center">
+			<div class="mypage-box border border-1">
+				<div class="my-category-menu border-bottom border-2">
+					<div class="mt-2">
+						<div class="nav-item"><a href="#" class="nav-link nav-link-active bg-warning">전체</a></div>
+						<span class="my-category-menu-list bg-warning">전체</span>
+						<div class="nav-item" th:each="category : ${categoryList}"><a href="#" class="nav-link" th:text="${category.name}"></a></div>
+					</div>
+				</div>
+				
+				
+				
+				
+				<div>
+					
+				</div>
+			</div>
+		</section>
+		
+		<script layout:fragment="script">
+			
+		</script>
+</html>

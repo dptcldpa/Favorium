@@ -9,7 +9,7 @@
 			
 			<!-- 카테고리 목록 -->
 			<ul class="nav category flex-column" id="categoryList">
-				<li class="category-list">전체</li>
+				<li class="category-list"><a href="/post/total-view">전체</a></li>
 				<li class="category-list" th:each="category : ${categoryList}" th:text="${category.name}"></li>
 			</ul>
 			
