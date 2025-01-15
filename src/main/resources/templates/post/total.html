@@ -10,7 +10,7 @@
 					<div class="mt-2">
 						<div class="nav-item"><a href="#" class="nav-link nav-link-active bg-warning">전체</a></div>
 						<span class="my-category-menu-list bg-warning">전체</span>
-						<div class="nav-item" th:each="category : ${categoryList}"><a href="#" class="nav-link" th:text="${category.name}"></a></div>
+						<span class="my-category-menu-list bg-warning" th:each="category : ${categoryList}"><a href="#" th:text="${category.name}"></a></span>
 					</div>
 				</div>
 				
