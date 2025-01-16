@@ -17,7 +17,7 @@
 			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">카테고리 +</button>
 			
 			<!-- 글 추가 버튼 -->
-			<button type="button" class="btn btn-secondary" id="postAddBtn" data-bs-toggle="modal" data-bs-target="#postAddModal" onclick="openPostModal()">글 +</button>
+			<button type="button" class="btn btn-secondary" id="postAddBtn" data-bs-toggle="modal" data-bs-target="#postAddModal">글 +</button>
 			
 			<!-- 카테고리 추가 모달 -->
 			<div class="modal fade" id="categoryAddModal" tabindex="-1" aria-labelledby="categoryAddLabel" aria-hidden="true">
@@ -45,8 +45,7 @@
 			<div class="modal fade" id="postAddModal" tabindex="-1" aria-labelledby="postAddLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered modal-lg">
 					<div class="modal-content">
-				       
-<!-- 추가한 부분 -->	
+				       	
 				       	<div class="modal-header">
 				        	<h5 class="modal-title" id="postAddLabel">새 게시글 작성</h5>
 				        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -55,15 +54,10 @@
 				      	<div class="modal-body">
 				      		<!-- 왼쪽 -->
 				      		<div>
-				      			<div class="dropdown">
-								  <button class="btn btn-secondary dropdown-toggle" type="button" id="categorySelectButton" data-bs-toggle="dropdown" aria-expanded="false">
-								    카테고리 선택
-								  </button>
-								  	<ul class="dropdown-menu" aria-labelledby="categorySelectButton">
-								    	<li><a class="dropdown-item" href="#">카테고리1</a></li>
-								    	<li class="dropdown-item" id="categoryId" th:each="category : ${categoryList}" th:text="${category.name}" name="categoryId" th:value="${category.id}"></li>
-									</ul>
-								</div>
+								<select class="form-select" id="categoryId">
+									<option selected>전체</option>
+									<option th:each="category : ${categoryList}" name="categoryId" th:text="|${category.name} id=${category.categoryId}|" th:value="${category.categoryId}"></option>
+								</select>
 				      		</div>
 				      		
 				      		<div class="d-flex">
@@ -99,9 +93,7 @@
 				      	<div class="modal-footer">
 				        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 				        	<button type="button" class="btn btn-primary" id="postSaveBtn">확인</button>
-				      	</div>	
-<!-- 추가한 부분 -->	
-				       
+				      	</div>
 					</div>
 				</div>
 			</div>
@@ -109,46 +101,7 @@
 		
 		<script th:block th:fragment="script">		
 		
-		// 글 추가 모달 열기
-		/* function openPostModal() {
-			$('#postAddModal .modal-content').load("/post/create-view");
-			$('#postAddModal').modal();
-		} */
-		
 		$(document).ready(function() {
-			
-			$("#postSaveBtn").on("click", function() {
-				
-				let categoryId = $("#categoryId").val();
-				let title = $("#titleInput").val();
-				let content = $("#contentInput").val();
-				
-				if(title == "") {
-					alert("제목을 입력하세요");
-					return;
-				}
-				
-				if(content == "") {
-					alert("내용을 입력하세요");
-					return;
-				}
-				
-				$.ajax({
-					type:"post"
-					, url:"/post/create"
-					, data: {"categoryId":categoryId, "title":title, "content":content}
-					, success:function(response) {
-						if(response.result == "success") {
-							alert("게시 성공");
-						} else {
-							alert("게시 실패");
-						}
-					}
-					, error:function() {
-						alert("게시 에러");
-					}
-				});
-			});
 			
 			$("#categorySaveBtn").on("click", function() {
 				
@@ -180,10 +133,46 @@
 						alert("카테고리 생성 에러");
 					}
 				});
+			});
+			
+			$("#postSaveBtn").on("click", function() {
 				
+				let categoryId = $("#categoryId").val();
+				let title = $("#titleInput").val();
+				let content = $("#contentInput").val();
 				
+				if(title == "") {
+					alert("제목을 입력하세요");
+					return;
+				}
 				
+				if(content == "") {
+					alert("내용을 입력하세요");
+					return;
+				}
 				
+				$('#postAddBtn').on('click', function() {
+	                $('#titleInput').val('');
+	                $('#contentInput').val('');
+	            });
+				
+				$('#postAddModal').modal('hide');
+				
+				$.ajax({
+					type:"post"
+					, url:"/post/create"
+					, data: {"categoryId":categoryId, "title":title, "content":content}
+					, success:function(response) {
+						if(response.result == "success") {
+							alert("게시 성공");
+						} else {
+							alert("게시 실패");
+						}
+					}
+					, error:function() {
+						alert("게시 에러");
+					}
+				});
 			});
 		});
 		</script>
