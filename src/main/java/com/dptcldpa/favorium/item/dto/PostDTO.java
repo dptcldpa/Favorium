@@ -2,6 +2,11 @@ package com.dptcldpa.favorium.item.dto;
 
 import java.time.LocalDateTime;
 
+import lombok.Builder;
+import lombok.Getter;
+
+@Builder
+@Getter
 public class PostDTO {
 	
 	private int itemId;

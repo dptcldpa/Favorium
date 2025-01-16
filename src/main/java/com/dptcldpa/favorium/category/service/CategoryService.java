@@ -8,18 +8,15 @@ import org.springframework.stereotype.Service;
 import com.dptcldpa.favorium.category.domain.Category;
 import com.dptcldpa.favorium.category.dto.CategoryDTO;
 import com.dptcldpa.favorium.category.repository.CategoryRepository;
-import com.dptcldpa.favorium.user.domain.User;
 import com.dptcldpa.favorium.user.service.UserService;
 
 @Service
 public class CategoryService {
 	
 	private CategoryRepository categoryRepository;
-	private UserService userService;
 	
-	public CategoryService(CategoryRepository categoryRepository, UserService  userService) {
+	public CategoryService(CategoryRepository categoryRepository) {
 		this.categoryRepository = categoryRepository;
-		this.userService = userService;
 	}
 
 	public boolean addCategory(int userId, String name) {
