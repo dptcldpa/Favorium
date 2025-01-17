@@ -6,6 +6,8 @@
 
 		<section layout:fragment="contents" class="d-flex justify-content-center">
 			<div class="mypage-box border border-1">
+			
+				<!-- 카테고리 목록 -->
 				<div class="my-category-menu border-bottom border-2">
 					<div class="mt-2">
 						<div class="nav-item"><a href="#" class="nav-link nav-link-active bg-warning">전체</a></div>
@@ -14,11 +16,51 @@
 					</div>
 				</div>
 				
-				
-				
-				
-				<div>
+				<!-- 게시물 -->
+				<div class="total-post bg-info">
+					<!-- 프로필 -->
+					<div class="mx-3 mt-4 d-flex"  style="height: 30px;">
+						<img class="mb-3 rounded-circle" height="30px" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+							
+						<div>
+							<div style="font-size: 10px;">닉네임</div>
+							
+							<div style="font-size: 10px;">게시 날짜</div>
+						</div>
+						
+						<div class="d-flex align-items-center">
+							<i class="fi fi-rr-menu-dots-vertical"></i>
+						</div>
+					</div>
 					
+					<!-- 게시글 -->
+					<div class="bg-primary" style="height: 100px;">
+						<div>
+							제목
+						</div>
+						
+						<div>
+							내용
+						</div>
+					</div>
+					
+					<!-- 북마크, 좋아요 -->
+					<div class="bg-secondary" style="height: 100px;">
+						<div>
+							북마크
+						</div>
+						
+						<div>
+							좋아요
+						</div>
+					</div>
+					
+					<!-- 댓글 -->
+					<div class="bg-success" style="height: 100px;">
+						<div>
+							댓글
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

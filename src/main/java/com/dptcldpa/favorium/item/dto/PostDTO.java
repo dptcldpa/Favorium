@@ -14,7 +14,7 @@ public class PostDTO {
 	private int categoryId;
 	
 	private String title;
-	private String contents;
+	private String content;
 	private LocalDateTime itemDate;
 	private String imagePath;
 	

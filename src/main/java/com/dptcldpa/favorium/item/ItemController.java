@@ -42,5 +42,4 @@ public class ItemController {
 		return "post/total";
 	}
 	
-	
 }
