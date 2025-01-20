@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.dptcldpa.favorium.common.FileManager;
 import com.dptcldpa.favorium.item.domain.Item;
 import com.dptcldpa.favorium.item.dto.PostDTO;
 import com.dptcldpa.favorium.item.repository.ItemRepository;
@@ -23,13 +25,16 @@ public class ItemService {
 	}
 	
 	// 글 추가
-	public boolean addPost(int userId, int categoryId, String title, String content) {
+	public boolean addPost(int userId, int categoryId, String title, String content, MultipartFile photo) {
+		
+		String imagePath = FileManager.saveFile(userId, photo);
 		
 		Item item = Item.builder()
 				.userId(userId)
 				.categoryId(categoryId)
 				.title(title)
 				.content(content)
+				.imagePath(imagePath)
 				.build();
 		
 		try {
