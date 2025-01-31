@@ -8,10 +8,11 @@
 			</div>
 			
 			<!-- 카테고리 목록 -->
-			<ul class="nav category flex-column" id="categoryList">
-				<li class="category-list"><a href="/post/total-view">전체</a></li>
-				<li class="category-list" th:each="category : ${categoryList}"><a href="/category/${category.name}" th:text="${category.name}"></a></li>
-			</ul>
+			<div class="list-group category flex-column" id="categoryList">
+				<a href="/post/total-view" class="list-group-item list-group-item-action" th:classappend="${currentUri == '/post/total-view'} ? 'active' : ''" th:attr="aria-current=${currentUri == '/post/total-view'} ? 'true' : 'false'"><i class="fi fi-rs-home"></i> 홈</a>
+				<!-- <a th:each="category : ${categoryList}" th:href="@{/category/{categoryId}(categoryId=${category.categoryId})}" th:text="${category.name}" class="list-group-item list-group-item-action"></a> -->
+				<a th:each="category : ${categoryList}" th:href="@{/category/{categoryId}(categoryId=${category.categoryId})}" th:text="${category.name}" class="list-group-item list-group-item-action" th:classappend="${currentUri == '/category/' + category.categoryId} ? 'active' : ''" th:attr="aria-current=${currentUri == '/category/' + category.categoryId} ? 'true' : 'false'"></a>
+			</div>
 			
 			<!-- 카테고리 추가 버튼 -->
 			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">카테고리 +</button>
@@ -83,7 +84,7 @@
 				      			<!-- 오른쪽 -->
 					      		<div class="main-content border col-8">
 					      			<input type="text" id="titleInput" placeholder="제목" style="width:340px;">
-					      			<input type="text" id="date" placeholder="날짜" name="date" style="width:160px;">
+					      			<input type="text" id="dateInput" placeholder="날짜" name="itemDate" style="width:160px;">
 					      			<textarea rows="2" class="form-control" id="contentInput" placeholder="내용"></textarea>
 					      								      			
 						      		<div class="d-flex">
@@ -108,7 +109,7 @@
 		
 		$(document).ready(function() {
 			
-			$("#date").datepicker({
+			$("#dateInput").datepicker({
 				dateFormat:"yy. m. d"
 				, changeMonth: false
 		        , dayNamesMin : ['월','화','수','목','금','토','일']
@@ -156,6 +157,7 @@
 				let title = $("#titleInput").val();
 				let content = $("#contentInput").val();
 				let photo = $("#photoInput")[0].files[0];
+				let itemDate = $("#dateInput").val();
 				
 				if(title == "") {
 					alert("제목을 입력하세요");
@@ -167,18 +169,25 @@
 					return;
 				}
 				
+				if(itemDate == "") {
+					alert("날짜를 선택하세요");
+					return;
+				}
+				
 				let formData = new FormData();
 				
 				formData.append("categoryId", categoryId);
 				formData.append("title", title);
 				formData.append("content", content);
 				formData.append("imagePath", photo);
+				formData.append("itemDate", itemDate);
 				
 				$('#postAddBtn').on('click', function() {
 	                $('#categoryId').val('');
 	                $('#titleInput').val('');
 	                $('#contentInput').val('');
 	                $('#photoInput').val('');
+	                $('#dateInput').val('');
 	            });
 				
 				$('#postAddModal').modal('hide');

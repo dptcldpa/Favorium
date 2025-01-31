@@ -1,5 +1,6 @@
 package com.dptcldpa.favorium.item;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,13 +28,14 @@ public class ItemRestController {
 			, @RequestParam("title") String title
 			, @RequestParam("content") String content
 			, @RequestParam("imagePath") MultipartFile photo
+			, @RequestParam("itemDate") String itemDate
 			, HttpSession session) {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
-		if(itemService.addPost(userId, categoryId, title, content, photo)) {
+		if(itemService.addPost(userId, categoryId, title, content, photo, itemDate)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");			

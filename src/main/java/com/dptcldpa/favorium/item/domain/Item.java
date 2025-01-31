@@ -40,7 +40,7 @@ public class Item {
 	private String content;
 	
 	@Column(name="itemDate")
-	private LocalDateTime itemDate;
+	private String itemDate;
 	
 	@Column(name="imagePath")
 	private String imagePath;

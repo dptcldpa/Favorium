@@ -12,10 +12,11 @@ public class PostDTO {
 	private int itemId;
 	private int userId;
 	private int categoryId;
+	private String categoryName;
 	
 	private String title;
 	private String content;
-	private LocalDateTime itemDate;
+	private String itemDate;
 	private String imagePath;
 	
 	private String loginId;
