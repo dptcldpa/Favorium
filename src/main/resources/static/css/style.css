@@ -61,6 +61,39 @@ header > .logo {
 	background-color: #CCCCCC;
 }
 
+.list-group-item.active {
+    background-color: #93B7BE;
+    border-color: #93B7BE;
+    color: #2D3047;
+}
+
+.fi-rs-home {
+	position: relative;
+  	top: 2px;
+}
+
+.imgArea{
+	width: 250px;
+	height: 200px;
+	position: relative;
+    overflow: hidden;        
+    display: flex;           
+    justify-content: center; 
+    align-items: center;
+}
+
+#imgArea img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+#photoInputButton {
+    font-size: 2em; 
+    cursor: pointer;
+}
+
 section {
 	width: 700px;
 	height: 800px;

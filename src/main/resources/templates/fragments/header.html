@@ -65,10 +65,10 @@
 				      		<!-- 왼쪽 -->
 				      		<div class="d-flex">
 				      			<div class="sub-content border col-4 d-flex justify-content-center flex-column">
-				      				<div style="width: 100px; height: 200px;">
-				      					<div id="photoInputButton">
-					      					<input type="file" id="photoInput" multiple="multiple">
-				      					</div>				      					
+				      				<div id="imgArea" class="imgArea">
+				      					<i class="fi fi-rr-images" id="photoInputButton"></i>
+					      				<input type="file" id="photoInput" multiple="multiple" class="d-none"> 
+					      				<!-- <div id="imagePreview"></div> -->
 				      				</div>
 				      				
 				      				<div class="d-flex">
@@ -119,7 +119,8 @@
 		        , showMonthAfterYear: true
 		        , yearSuffix: "년"
 			});
-
+			
+			// 카테고리 추가 버튼
 			$("#categorySaveBtn").on("click", function() {
 				
 				let categoryTitle = $("#categoryTitleInput").val();
@@ -152,6 +153,27 @@
 				});
 			});
 			
+			// 파일 선택을 아이콘으로 변경
+			$("#photoInputButton").on("click", function() {
+				$("#photoInput").click();
+			});
+			
+			// 이미지 업로드 전 미리보기
+			$("#photoInput").change(function(event) {
+				
+				const file = event.target.files;
+	
+				var image = new Image();
+				var ImageTempUrl = window.URL.createObjectURL(file[0]);
+	
+				image.src = ImageTempUrl;
+	
+				$("#imgArea").append(image);
+				
+				$("#photoInputButton").hide();
+			});
+			
+			// 게시글 저장 버튼
 			$("#postSaveBtn").on("click", function() {
 				
 				let categoryId = $("#categoryId").val();
@@ -212,10 +234,6 @@
 					}
 				});
 			});
-			
-/* 			$("#photoInputButton").on("click", function() {
-				$("#photoInput").click();
-			}); */
 			
 		});
 		</script>
