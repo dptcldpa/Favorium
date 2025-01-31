@@ -36,15 +36,16 @@ public class ItemController {
 	
 	// 전체보기
 	@GetMapping("/post/total-view")
-	public String totalPost(Model model, HttpSession session) {
+	public String totalPost(Model model, HttpSession session, HttpServletRequest request) {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
 		List<CategoryDTO> categoryList = categoryService.getCategoryList(userId);
-		List<PostDTO> postList = itemService.getPostList(userId);
+		List<PostDTO> itemList = itemService.getPostList(userId);
 		
 		model.addAttribute("categoryList", categoryList);
-		model.addAttribute("postList", postList);
+		model.addAttribute("itemList", itemList);
+		model.addAttribute("currentUri", request.getRequestURI());
 		
 		return "post/total";
 	}

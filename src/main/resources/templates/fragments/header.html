@@ -8,17 +8,18 @@
 			</div>
 			
 			<!-- 카테고리 목록 -->
-			<div class="list-group category flex-column" id="categoryList">
-				<a href="/post/total-view" class="list-group-item list-group-item-action" th:classappend="${currentUri == '/post/total-view'} ? 'active' : ''" th:attr="aria-current=${currentUri == '/post/total-view'} ? 'true' : 'false'"><i class="fi fi-rs-home"></i> 홈</a>
-				<!-- <a th:each="category : ${categoryList}" th:href="@{/category/{categoryId}(categoryId=${category.categoryId})}" th:text="${category.name}" class="list-group-item list-group-item-action"></a> -->
+			<div class="list-group category flex-column mb-2" id="categoryList">
+				<a href="/post/total-view" class="category-home list-group-item list-group-item-action" th:classappend="${currentUri == '/post/total-view'} ? 'active' : ''" th:attr="aria-current=${currentUri == '/post/total-view'} ? 'true' : 'false'"><i class="fi fi-rs-home "></i> 홈</a>
 				<a th:each="category : ${categoryList}" th:href="@{/category/{categoryId}(categoryId=${category.categoryId})}" th:text="${category.name}" class="list-group-item list-group-item-action" th:classappend="${currentUri == '/category/' + category.categoryId} ? 'active' : ''" th:attr="aria-current=${currentUri == '/category/' + category.categoryId} ? 'true' : 'false'"></a>
 			</div>
 			
-			<!-- 카테고리 추가 버튼 -->
-			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">카테고리 +</button>
-			
-			<!-- 글 추가 버튼 -->
-			<button type="button" class="btn btn-secondary" id="postAddBtn" data-bs-toggle="modal" data-bs-target="#postAddModal">글 +</button>
+			<div class="d-flex gap-2 mx-1">
+				<!-- 카테고리 추가 버튼 -->
+				<button type="button" class="btn btn-secondary flex-fill" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal" style="background-color: #2D3047;">카테고리 +</button>
+				
+				<!-- 글 추가 버튼 -->
+				<button type="button" class="btn btn-secondary flex-fill" id="postAddBtn" data-bs-toggle="modal" data-bs-target="#postAddModal" style="background-color: #2D3047;">글 +</button>
+			</div>
 			
 			<!-- 카테고리 추가 모달 -->
 			<div class="modal fade" id="categoryAddModal" tabindex="-1" aria-labelledby="categoryAddLabel" aria-hidden="true">
