@@ -52,8 +52,8 @@
 <br>
 
 ## 4. 트러블 슈팅
-   - 카테고리 목록의 active 클래스
-   - 게시글에서의 카테고리 이름
+   - [카테고리 목록의 active 클래스](https://github.com/dptcldpa/Favorium/wiki/%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85-%E2%80%90-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%AA%A9%EB%A1%9D%EC%9D%98-active-%ED%81%B4%EB%9E%98%EC%8A%A4)
+   - [각 게시글에서의 카테고리 이름](https://github.com/dptcldpa/Favorium/wiki/%ED%8A%B8%EB%9F%AC%EB%B6%88-%EC%8A%88%ED%8C%85-%E2%80%90-%EA%B2%8C%EC%8B%9C%EA%B8%80%EC%97%90%EC%84%9C%EC%9D%98-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EC%9D%B4%EB%A6%84)
 
 <br>
 
