@@ -1,6 +1,7 @@
 package com.dptcldpa.favorium.item.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,5 +119,41 @@ public class ItemService {
 		return postList;
 		
 	}
+	
+	// 1년 알림창
+		public List<PostDTO> oneYearAgotodayPost(int userId) { 
+			
+			List<Item> itemList = itemRepository.findByUserId(userId);
+			
+			List<PostDTO> oneYearOldPosts = new ArrayList<>();
+			
+			LocalDate oneYearAgo = LocalDate.now().minusYears(1);
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. M. d");
+			
+			for(Item item : itemList) {
+				
+				LocalDate postDate = LocalDate.parse(item.getItemDate(), formatter);
+				
+				if(postDate.isEqual(oneYearAgo)) {
+					
+					PostDTO post = PostDTO.builder()
+							.itemId(item.getId())
+							.userId(userId)
+							.categoryId(item.getCategoryId())
+							.title(item.getTitle())
+							.content(item.getContent())
+							.itemDate(item.getItemDate())
+							.imagePath(item.getImagePath())
+							.build();
+					
+					oneYearOldPosts.add(post);
+					
+				}
+			}
+			
+			return oneYearOldPosts;
+			
+		}
 	
 }

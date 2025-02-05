@@ -27,7 +27,17 @@ public class MyPageController {
 	@GetMapping("/user/mypage-view")
 	public String mypage(Model model, HttpSession session) {
 		
-		int userId = (Integer)session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
+		
+		if(userId != null) {
+			// 특정 사용자(userId)의 1년 전 게시글 가져오기
+            List<PostDTO> oneYearAgoPosts = itemService.oneYearAgotodayPost(userId);
+
+            if (!oneYearAgoPosts.isEmpty()) {
+                model.addAttribute("showModal", true);
+                model.addAttribute("posts", oneYearAgoPosts);
+            }
+		}
 		
 		List<CategoryDTO> categoryList = categoryService.getCategoryList(userId);
 		List<PostDTO> itemList = itemService.getPostList(userId);

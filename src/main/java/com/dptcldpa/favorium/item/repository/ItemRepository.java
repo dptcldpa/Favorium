@@ -14,5 +14,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	List<Item> findAllByOrderByIdDesc();
 	
 	List<Item> findByCategoryIdOrderByIdDesc(int categoryId);
-
+	
+	// 1년 알림창
+	List<Item> findByUserId(int userId);
 }
