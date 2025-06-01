@@ -8,16 +8,18 @@
 			</div>
 			
 			<!-- 카테고리 목록 -->
-			<ul class="nav category flex-column" id="categoryList">
-				<li class="category-list"><a href="/post/total-view">전체</a></li>
-				<li class="category-list" th:each="category : ${categoryList}"><a href="/category/${category.name}" th:text="${category.name}"></a></li>
-			</ul>
+			<div class="list-group category flex-column mb-2" id="categoryList">
+				<a href="/post/total-view" class="category-home list-group-item list-group-item-action" th:classappend="${currentUri == '/post/total-view'} ? 'active' : ''" th:attr="aria-current=${currentUri == '/post/total-view'} ? 'true' : 'false'"><i class="fi fi-rs-home "></i> 홈</a>
+				<a th:each="category : ${categoryList}" th:href="@{/category/{categoryId}(categoryId=${category.categoryId})}" th:text="${category.name}" class="list-group-item list-group-item-action" th:classappend="${currentUri == '/category/' + category.categoryId} ? 'active' : ''" th:attr="aria-current=${currentUri == '/category/' + category.categoryId} ? 'true' : 'false'"></a>
+			</div>
 			
-			<!-- 카테고리 추가 버튼 -->
-			<button type="button" class="btn btn-secondary" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal">카테고리 +</button>
-			
-			<!-- 글 추가 버튼 -->
-			<button type="button" class="btn btn-secondary" id="postAddBtn" data-bs-toggle="modal" data-bs-target="#postAddModal">글 +</button>
+			<div class="d-flex gap-2 mx-1">
+				<!-- 카테고리 추가 버튼 -->
+				<button type="button" class="btn btn-secondary flex-fill" id="categoryAddBtn" data-bs-toggle="modal" data-bs-target="#categoryAddModal" style="background-color: #2D3047;">카테고리 +</button>
+				
+				<!-- 글 추가 버튼 -->
+				<button type="button" class="btn btn-secondary flex-fill" id="postAddBtn" data-bs-toggle="modal" data-bs-target="#postAddModal" style="background-color: #2D3047;">글 +</button>
+			</div>
 			
 			<!-- 카테고리 추가 모달 -->
 			<div class="modal fade" id="categoryAddModal" tabindex="-1" aria-labelledby="categoryAddLabel" aria-hidden="true">
@@ -63,10 +65,10 @@
 				      		<!-- 왼쪽 -->
 				      		<div class="d-flex">
 				      			<div class="sub-content border col-4 d-flex justify-content-center flex-column">
-				      				<div style="width: 100px; height: 200px;">
-				      					<div id="photoInputButton">
-					      					<input type="file" id="photoInput" multiple="multiple">
-				      					</div>				      					
+				      				<div id="imgArea" class="imgArea">
+				      					<i class="fi fi-rr-images" id="photoInputButton"></i>
+					      				<input type="file" id="photoInput" multiple="multiple" class="d-none"> 
+					      				<!-- <div id="imagePreview"></div> -->
 				      				</div>
 				      				
 				      				<div class="d-flex">
@@ -83,7 +85,7 @@
 				      			<!-- 오른쪽 -->
 					      		<div class="main-content border col-8">
 					      			<input type="text" id="titleInput" placeholder="제목" style="width:340px;">
-					      			<input type="text" id="date" placeholder="날짜" name="date" style="width:160px;">
+					      			<input type="text" id="dateInput" placeholder="날짜" name="itemDate" style="width:160px;">
 					      			<textarea rows="2" class="form-control" id="contentInput" placeholder="내용"></textarea>
 					      								      			
 						      		<div class="d-flex">
@@ -108,7 +110,7 @@
 		
 		$(document).ready(function() {
 			
-			$("#date").datepicker({
+			$("#dateInput").datepicker({
 				dateFormat:"yy. m. d"
 				, changeMonth: false
 		        , dayNamesMin : ['월','화','수','목','금','토','일']
@@ -117,7 +119,8 @@
 		        , showMonthAfterYear: true
 		        , yearSuffix: "년"
 			});
-
+			
+			// 카테고리 추가 버튼
 			$("#categorySaveBtn").on("click", function() {
 				
 				let categoryTitle = $("#categoryTitleInput").val();
@@ -150,12 +153,34 @@
 				});
 			});
 			
+			// 파일 선택을 아이콘으로 변경
+			$("#photoInputButton").on("click", function() {
+				$("#photoInput").click();
+			});
+			
+			// 이미지 업로드 전 미리보기
+			$("#photoInput").change(function(event) {
+				
+				const file = event.target.files;
+	
+				var image = new Image();
+				var ImageTempUrl = window.URL.createObjectURL(file[0]);
+	
+				image.src = ImageTempUrl;
+	
+				$("#imgArea").append(image);
+				
+				$("#photoInputButton").hide();
+			});
+			
+			// 게시글 저장 버튼
 			$("#postSaveBtn").on("click", function() {
 				
 				let categoryId = $("#categoryId").val();
 				let title = $("#titleInput").val();
 				let content = $("#contentInput").val();
 				let photo = $("#photoInput")[0].files[0];
+				let itemDate = $("#dateInput").val();
 				
 				if(title == "") {
 					alert("제목을 입력하세요");
@@ -167,18 +192,25 @@
 					return;
 				}
 				
+				if(itemDate == "") {
+					alert("날짜를 선택하세요");
+					return;
+				}
+				
 				let formData = new FormData();
 				
 				formData.append("categoryId", categoryId);
 				formData.append("title", title);
 				formData.append("content", content);
 				formData.append("imagePath", photo);
+				formData.append("itemDate", itemDate);
 				
 				$('#postAddBtn').on('click', function() {
 	                $('#categoryId').val('');
 	                $('#titleInput').val('');
 	                $('#contentInput').val('');
 	                $('#photoInput').val('');
+	                $('#dateInput').val('');
 	            });
 				
 				$('#postAddModal').modal('hide');
@@ -202,10 +234,6 @@
 					}
 				});
 			});
-			
-/* 			$("#photoInputButton").on("click", function() {
-				$("#photoInput").click();
-			}); */
 			
 		});
 		</script>

@@ -2,13 +2,13 @@ package com.dptcldpa.favorium.category.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.dptcldpa.favorium.category.domain.Category;
 import com.dptcldpa.favorium.category.dto.CategoryDTO;
 import com.dptcldpa.favorium.category.repository.CategoryRepository;
-import com.dptcldpa.favorium.user.service.UserService;
 
 @Service
 public class CategoryService {
@@ -53,6 +53,14 @@ public class CategoryService {
 			
 		}
 		return categoryDTOList;
+		
+	}
+	
+	public Category findId(int id) {
+		
+		Optional<Category> optionalCategory = categoryRepository.findById(id);
+		
+		return optionalCategory.orElse(null);
 		
 	}
 	
